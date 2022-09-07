@@ -96,8 +96,8 @@ RUN . /opt/graphite/bin/activate \
  && $python_binary ./setup.py install
 
 # install graphite
-ARG graphite_version=MON-148
-ARG graphite_repo=https://github.com/arenadata/graphite-web/graphite-web.git
+ARG graphite_version=${version}
+ARG graphite_repo=https://github.com/graphite-project/graphite-web.git
 RUN . /opt/graphite/bin/activate \
  && git clone -b ${graphite_version} --depth 1 ${graphite_repo} /usr/local/src/graphite-web \
  && cd /usr/local/src/graphite-web \
