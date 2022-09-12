@@ -52,7 +52,8 @@ RUN true \
       gunicorn \
       msgpack-python \
       redis \
-      rrdtool
+      rrdtool \
+      pyparsing==2.4.7
 
 ARG version=1.1.5
 
