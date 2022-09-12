@@ -1,6 +1,5 @@
 FROM alpine:3.8 as base
 LABEL maintainer="Denys Zhdanov <denis.zhdanov@gmail.com>"
-ENV NGINX_VERSION nginx-1.23.1
 
 RUN true \
  && apk add --no-cache \
@@ -13,6 +12,7 @@ RUN true \
       logrotate \
       memcached \
       nodejs \
+      nginx \
       npm \
       py3-pyldap \
       redis \
@@ -108,7 +108,7 @@ COPY conf/opt/statsd/config/ /opt/defaultconf/statsd/config/
 
 FROM base as production
 LABEL maintainer="Denys Zhdanov <denis.zhdanov@gmail.com>"
-
+#Update nginx for customer request MON-147-148
 RUN echo http://dl-cdn.alpinelinux.org/alpine/v3.16/main >> /etc/apk/repositories && \
   apk add -X http://dl-cdn.alpinelinux.org/alpine/v3.16/main -u alpine-keys --allow-untrusted && \
   apk add --upgrade nginx
